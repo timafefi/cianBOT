@@ -22,10 +22,8 @@ class Cparser:
             dump = json.load(fp)
             diff = []
             lasturl = ''
-            if len(dump)>0:
-                lasturl = dump[0]['link']
             for flat in self.data:
-                if (flat['link'] == lasturl):
+                if flat in dump:
                     break
                 diff.append(flat)
         return diff
