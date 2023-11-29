@@ -19,10 +19,13 @@ class Cparser:
         with open(self.filename, "r") as fp:
             dump = json.load(fp)
             diff = []
-            try:
-                diff = self.data[self.data.index(dump[0]):]
-            except Exception:
-                diff = self.data
+            lasturl = ''
+            if len(dump)>0:
+                lasturl = dump[0]['link']
+            for flat in self.data:
+                if (flat['link'] == lasturl):
+                    break
+                diff.append(flat)
         return diff
 
 
