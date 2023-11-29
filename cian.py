@@ -20,6 +20,8 @@ class Cparser:
     def get_new_entries(self):
         with open(self.filename, "r") as fp:
             dump = json.load(fp)
+            with open(self.memoryfile, "w") as memfile:
+                json.dump(dump, memfile)
             diff = []
             lasturl = ''
             for flat in self.data:
@@ -31,7 +33,6 @@ class Cparser:
 
 
     def save_json(self):
-        shutil.copy(self.filename, self.memoryfile)
         with open(self.filename, "w") as fp:
             json.dump(self.data, fp)
 
