@@ -1,4 +1,5 @@
 import cianparser
+import shutil
 import json
 
 
@@ -13,6 +14,7 @@ class Cparser:
         }
         self.data = []
         self.filename = 'dump.json'
+        self.memoryfile= 'dumpold.json'
 
 
     def get_new_entries(self):
@@ -31,6 +33,7 @@ class Cparser:
 
 
     def save_json(self):
+        shutil.copy(self.filename, self.memoryfile)
         with open(self.filename, "w") as fp:
             json.dump(self.data, fp)
 
